@@ -1,62 +1,471 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faisal Raheem - Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .profile-img {
-            width: 150px;
-            border-radius: 50%;
-            margin-top: 20px;
-        }
-        .container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: auto;
-        }
-        .icons img {
-            width: 40px;
-            margin: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faisal Raheem · Dev Portfolio</title>
+  <!-- Font Awesome for crisp icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0b1120 0%, #1a253b 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      padding: 24px;
+      margin: 0;
+    }
+
+    /* glass-morphism card */
+    .container {
+      max-width: 880px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 48px;
+      padding: 40px 36px;
+      box-shadow: 0 25px 50px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+      transition: all 0.3s ease;
+      color: #f0f4ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle animated glow */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle at 30% 40%, rgba(99, 140, 255, 0.08), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, #b6cbff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    h1 i {
+      font-size: 2.8rem;
+      color: #f7c948;
+      background: rgba(255, 215, 0, 0.12);
+      padding: 4px 10px;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #b7cbff;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 8px 20px;
+      border-radius: 40px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 24px;
+      letter-spacing: 0.3px;
+    }
+
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .profile-img-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #7aa2ff, #b388ff);
+      box-shadow: 0 10px 30px -8px rgba(0, 20, 80, 0.6);
+      margin-bottom: 20px;
+      transition: transform 0.25s ease;
+    }
+
+    .profile-img-wrapper:hover {
+      transform: scale(1.02);
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0b1120;
+      display: block;
+      background: #1e2a41;
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 32px;
+      padding: 24px 28px;
+      margin: 24px 0 20px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      width: 100%;
+    }
+
+    .bio-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      color: #d3e0ff;
+      padding: 4px 0;
+    }
+
+    .bio-item i {
+      width: 24px;
+      font-size: 1.2rem;
+      color: #8bb3ff;
+      text-align: center;
+    }
+
+    .bio-item a {
+      color: #aecbff;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .bio-item a:hover {
+      color: #ffffff;
+      border-bottom-color: #7aa2ff;
+    }
+
+    .highlight-badge {
+      background: rgba(100, 180, 255, 0.12);
+      padding: 2px 12px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #b3d0ff;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      margin-left: 4px;
+    }
+
+    .btn-resume {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 18px;
+      border-radius: 60px;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: inline-block;
+      color: #d3e0ff;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-resume:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #7aa2ff;
+      color: white;
+      box-shadow: 0 0 20px rgba(70, 130, 255, 0.2);
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 28px 0 16px 0;
+      letter-spacing: -0.01em;
+      color: #d6e4ff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      font-size: 1.4rem;
+      color: #7aa2ff;
+    }
+
+    .icon-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 20px;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.15);
+      padding: 18px 20px;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .icon-group a,
+    .icon-group .badge-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #d3e0ff;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 6px 18px 6px 14px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .icon-group a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+      border-color: #7aa2ff;
+      box-shadow: 0 8px 20px rgba(0, 20, 60, 0.3);
+    }
+
+    .icon-group .badge-icon {
+      background: rgba(60, 120, 255, 0.08);
+      border: none;
+      padding: 6px 14px;
+    }
+
+    .badge-icon i {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    .icon-group img {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      filter: brightness(0) invert(1) opacity(0.8);
+      transition: filter 0.2s;
+    }
+
+    .icon-group a:hover img {
+      filter: brightness(0) invert(1) opacity(1);
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(4px);
+      padding: 8px 22px;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: #d3e0ff;
+      text-decoration: none;
+      font-weight: 450;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+
+    .social-links a i {
+      font-size: 1.3rem;
+      color: #8bb3ff;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #7aa2ff;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px -8px rgba(0, 20, 80, 0.5);
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 0.9rem;
+      opacity: 0.5;
+      letter-spacing: 0.3px;
+      color: #9bb0e6;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-note span i {
+      margin-right: 6px;
+      color: #6d93e0;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .container {
+        padding: 28px 16px;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2.3rem;
+        gap: 4px;
+      }
+      .bio-grid {
+        grid-template-columns: 1fr;
+        padding: 18px 16px;
+      }
+      .icon-group {
+        gap: 12px;
+        padding: 16px;
+        border-radius: 40px;
+      }
+      .social-links a {
+        padding: 6px 14px;
+        font-size: 0.9rem;
+      }
+      .profile-img-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    /* small extra glow */
+    .glow-text {
+      text-shadow: 0 0 30px rgba(70, 130, 255, 0.15);
+    }
+
+    .inline-icon {
+      margin-right: 6px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hi 👋, I'm Faisal Raheem</h1>
-        <h3>Software Engineer (.NET Core Razor Pages, MVC, Web API)</h3>
-        <img class="profile-img" src="https://github.com/faisalraheem360.png" alt="Profile Picture">
-        
-        <p>🚀 I’m currently working on <a href="https://www.aiu.edu/">AIU</a></p>
-        <p>🌱 I’m working with <strong>ASP.NET Core Razor Pages and MVC</strong></p>
-        <p>🔐 My projects are available at <a href="https://github.com/faisalraheem360?tab=repositories">GitHub</a></p>
-        <p>📝 I regularly write articles on GitHub</p>
-        <p>💬 Ask me about <strong>.NET Core</strong></p>
-        <p>📩 Reach me at <strong>iamfaisalraheem@gmail.com</strong></p>
-        <p>📄 Know about my experiences: <a href="https://drive.google.com/file/d/12830vAf_aS0tRK6RWf3H2gT_9zCluUNK/view?usp=drive_link">Resume</a></p>
-        
-        <h3>Connect with me:</h3>
-        <div class="icons">
-            <a href="https://linkayi.com/-FaisalRaheem"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"></a>
-        </div>
-        
-        <h3>Languages and Tools:</h3>
-        <div class="icons">
-            <img src="https://img.shields.io/badge/-C%23-239120?style=flat&logo=c-sharp&logoColor=white" alt="C#">
-            <img src="https://img.shields.io/badge/-.NET-512BD4?style=flat&logo=dotnet&logoColor=white" alt=".NET">
-            <img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat&logo=bootstrap&logoColor=white" alt="Bootstrap">
-            <img src="https://img.shields.io/badge/-Git-F05032?style=flat&logo=git&logoColor=white" alt="Git">
-        </div>
+<div class="container">
+
+  <!-- header -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <h1>
+      <i class="fas fa-hand-peace" style="font-size: 2.6rem;"></i>
+      Faisal Raheem
+    </h1>
+    <div class="subhead">
+      <i class="fas fa-code" style="margin-right: 10px;"></i> .NET Core · Razor Pages · MVC · Web API
     </div>
+  </div>
+
+  <!-- profile + bio -->
+  <div class="profile-section">
+    <div class="profile-img-wrapper">
+      <img class="profile-img" src="https://github.com/faisalraheem360.png" alt="Faisal Raheem profile">
+    </div>
+
+    <!-- grid bio -->
+    <div class="bio-grid">
+      <div class="bio-item"><i class="fas fa-rocket"></i> <span>Currently at <a href="https://www.aiu.edu/" target="_blank">AIU <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a></span></div>
+      <div class="bio-item"><i class="fas fa-seedling"></i> <span>ASP.NET Core Razor & MVC</span></div>
+      <div class="bio-item"><i class="fas fa-lock"></i> <span>Projects on <a href="https://github.com/faisalraheem360?tab=repositories" target="_blank">GitHub <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a></span></div>
+      <div class="bio-item"><i class="fas fa-pen-fancy"></i> <span>Articles on GitHub</span></div>
+      <div class="bio-item"><i class="fas fa-comment-dots"></i> <span>Ask me about <span class="highlight-badge">.NET Core</span></span></div>
+      <div class="bio-item"><i class="fas fa-envelope"></i> <span><a href="mailto:iamfaisalraheem@gmail.com">iamfaisalraheem@gmail.com</a></span></div>
+      <div class="bio-item" style="grid-column: 1 / -1; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <i class="fas fa-file-alt"></i>
+        <a href="https://drive.google.com/file/d/12NZqX25k-J9UWXsXypFyJ0u_XRwgAhIv/view?usp=drive_link" target="_blank" class="btn-resume">
+          <i class="fas fa-arrow-right" style="margin-right: 6px;"></i> Resume
+        </a>
+        <span style="opacity:0.4; font-size:0.8rem;">· experiences</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- connect + social -->
+  <div class="section-title">
+    <i class="fas fa-share-alt"></i> Connect with me
+  </div>
+  <div class="social-links">
+    <a href="https://linkayi.com/-FaisalRaheem" target="_blank">
+      <i class="fab fa-linkedin-in"></i> LinkedIn
+    </a>
+    <a href="https://github.com/faisalraheem360" target="_blank">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="mailto:iamfaisalraheem@gmail.com">
+      <i class="fas fa-paper-plane"></i> Email
+    </a>
+  </div>
+
+  <!-- languages & tools -->
+  <div class="section-title" style="margin-top: 32px;">
+    <i class="fas fa-laptop-code"></i> Languages & Tools
+  </div>
+  <div class="icon-group">
+    <!-- using font awesome + text badges for better visual -->
+    <span class="badge-icon"><i class="fas fa-code" style="color: #a77cff;"></i> C#</span>
+    <span class="badge-icon"><i class="fas fa-dot-circle" style="color: #6b8cff;"></i> .NET</span>
+    <span class="badge-icon"><i class="fas fa-bold" style="color: #7b5ea7;"></i> Bootstrap</span>
+    <span class="badge-icon"><i class="fab fa-git-alt" style="color: #f05032;"></i> Git</span>
+    <span class="badge-icon"><i class="fas fa-database" style="color: #6ab0f7;"></i> SQL</span>
+    <span class="badge-icon"><i class="fas fa-cloud" style="color: #68b8ff;"></i> Azure</span>
+    <!-- additional icon with image fallback (optional) but we keep it minimal -->
+    <a href="#" style="pointer-events: none; opacity:0.8; background:transparent; border:none; padding:0 6px;">
+      <i class="fas fa-cubes" style="color: #9bbaff;"></i> Razor
+    </a>
+  </div>
+
+  <!-- subtle footer -->
+  <div class="footer-note">
+    <span><i class="fas fa-regular fa-star"></i> .NET Core · MVC · Web API</span>
+    <span><i class="fas fa-regular fa-heart" style="color: #ff7b9c;"></i> clean code</span>
+    <span><i class="fas fa-regular fa-calendar-alt"></i> 2026</span>
+  </div>
+
+  <!-- small "amaze" detail: glowing pulse dot -->
+  <div style="position: absolute; right: 28px; bottom: 28px; opacity:0.25; font-size: 0.8rem; color: #8bb3ff; z-index: 1; pointer-events: none;">
+    <i class="fas fa-circle" style="color: #6bb3ff; animation: pulse 2s infinite;"></i>
+  </div>
+  <style>
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.3; transform: scale(1); }
+    }
+  </style>
+
+</div>
 </body>
 </html>
